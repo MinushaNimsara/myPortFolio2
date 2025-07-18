@@ -408,7 +408,6 @@
             transform: translateX(-50%);
             text-align: center;
             color: var(--soft-gray);
-            cursor: pointer;
         }
 
         .scroll-indicator {
@@ -496,6 +495,17 @@
 
         .image-wrapper:hover img {
             transform: scale(1.1);
+        }
+
+        .image-decoration {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 100px;
+            height: 100px;
+            border: 2px solid var(--arctic-blue);
+            border-radius: 20px;
+            z-index: -1;
         }
 
         .about-content h3 {
@@ -893,7 +903,17 @@
         }
 
         .form-group input,
-        .form-group textarea,
+        .form-group textarea {
+            width: 100%;
+            background: var(--moonstone);
+            border: 2px solid rgba(100, 255, 218, 0.1);
+            border-radius: 10px;
+            padding: 1rem;
+            color: var(--silver-mist);
+            font-size: 1rem;
+            transition: all var(--transition-normal);
+        }
+
         .input-field {
             width: 100%;
             background: var(--moonstone);
@@ -1188,7 +1208,7 @@
                             <span>View My Work</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
-                        <a href="#" class="btn btn-secondary" onclick="downloadCV()">
+                        <a href="Minusha_Nimsara_CV.pdf" class="btn btn-secondary" onclick="downloadCV()">
                             <span>Download CV</span>
                             <i class="fas fa-download"></i>
                         </a>
@@ -1215,8 +1235,9 @@
                 <div class="about-grid">
                     <div class="about-image">
                         <div class="image-wrapper">
-                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjQwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZ3JhZGllbnQiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdHlsZT0ic3RvcC1jb2xvcjojNjRGRkRBIiAvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMzQjgyRjYiIC8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjQwMCIgZmlsbD0idXJsKCNncmFkaWVudCkiIHJ4PSIyMCIvPgogIDx0ZXh0IHg9IjE1MCIgeT0iMjEwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1zaXplPSI0OCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJBcmlhbCI+TU48L3RleHQ+Cjwvc3ZnPgo=" alt="Minusha Nimsara">
+                            <img src="Minusha Nimsara.png" alt="Minusha Nimsara">
                         </div>
+                        
                     </div>
                     
                     <div class="about-content">
@@ -1227,19 +1248,19 @@
                         </div>
                         
                         <div class="about-timeline">
-                            <div class="timeline-item" data-year="2024-2026">
+                            <div class="timeline-item" data-year="2024-2026"><br>
                                 <h4>BSc (Hons) Software Engineering</h4>
                                 <p>Cardiff Metropolitan University - UK (In Progress)</p>
                             </div>
-                            <div class="timeline-item" data-year="2024">
+                            <div class="timeline-item" data-year="2024"><br>
                                 <h4>Higher Diploma in Computing</h4>
                                 <p>Software Engineering (Completed)</p>
                             </div>
-                            <div class="timeline-item" data-year="2022">
+                            <div class="timeline-item" data-year="2022"><br>
                                 <h4>G.C.E Advanced Level</h4>
                                 <p>Bandaranayake College - Gampaha</p>
                             </div>
-                            <div class="timeline-item" data-year="2019">
+                            <div class="timeline-item" data-year="2019"><br>
                                 <h4>G.C.E Ordinary Level</h4>
                                 <p>Bandaranayake College - Gampaha</p>
                             </div>
@@ -1838,11 +1859,13 @@
             });
         }
 
-        // Contact form functionality
+        // Contact form functionality - Simple Formspree
         function initContactForm() {
             const form = document.querySelector('.contact-form');
             
+            // Remove default JavaScript validation since Formspree handles it
             form.addEventListener('submit', (e) => {
+                // Let the form submit naturally to Formspree
                 const submitBtn = form.querySelector('.submit-btn');
                 const originalText = submitBtn.innerHTML;
                 
@@ -1939,69 +1962,10 @@
             const navToggle = document.querySelector('.nav-toggle');
             const navMenu = document.querySelector('.nav-menu');
             
-            if (navToggle && navMenu) {
-                navToggle.addEventListener('click', () => {
-                    navToggle.classList.toggle('active');
-                    navMenu.classList.toggle('active');
-                });
-            }
-        }
-
-        // CV Download functionality
-        function downloadCV() {
-            const cvData = `
-                <html>
-                <head><title>Minusha Nimsara - CV</title></head>
-                <body style="font-family: Arial, sans-serif; padding: 20px;">
-                    <h1>K.L. Minusha Nimsara</h1>
-                    <h2>2nd Year Undergraduate - Software Engineering</h2>
-                    
-                    <h3>Contact Information</h3>
-                    <p>Phone: +94 70 144 9952</p>
-                    <p>Email: minushanimsara37@gmail.com</p>
-                    <p>Location: Kambadola, Dela, Ratnapura</p>
-                    <p>LinkedIn: linkedin.com/in/minusha-nimsara-a31131331</p>
-                    <p>GitHub: github.com/MinushaNimsara</p>
-                    
-                    <h3>Education</h3>
-                    <p><strong>BSc (Hons) Software Engineering</strong> - Cardiff Metropolitan University (2024-2026)</p>
-                    <p><strong>Higher Diploma in Computing</strong> - Software Engineering (Completed 2024)</p>
-                    <p><strong>G.C.E Advanced Level</strong> - Bandaranayake College, Gampaha (2022)</p>
-                    
-                    <h3>Technical Skills</h3>
-                    <p><strong>Programming Languages:</strong> Java, C#, C++, JavaScript, PHP</p>
-                    <p><strong>Web Development:</strong> HTML, CSS, ASP.NET</p>
-                    <p><strong>Databases:</strong> MySQL, Firebase, SQL Server</p>
-                    <p><strong>Tools:</strong> Visual Studio, VS Code, Android Studio, Git</p>
-                    
-                    <h3>Academic Projects</h3>
-                    <p><strong>TechFix Computer Shop</strong> - Inventory Management System (2024)</p>
-                    <p><strong>Puppy's Food Mobile App</strong> - Dog food delivery application (2024)</p>
-                    <p><strong>The Safari Beyond Website</strong> - Safari vehicle rental platform (2024)</p>
-                    <p><strong>The Gallery Cafe Website</strong> - Restaurant management system (2024)</p>
-                    
-                    <h3>Languages</h3>
-                    <p>English: Fluent (75%)</p>
-                    <p>Sinhala: Native (90%)</p>
-                    <p>Tamil: Basic (20%)</p>
-                </body>
-                </html>
-            `;
-            
-            const blob = new Blob([cvData], { type: 'text/html' });
-            const url = URL.createObjectURL(blob);
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = 'Minusha_Nimsara_CV.html';
-            link.style.display = 'none';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            URL.revokeObjectURL(url);
-            
-            setTimeout(() => {
-                alert('CV downloaded successfully! For PDF version, please contact me directly.');
-            }, 100);
+            navToggle.addEventListener('click', () => {
+                navToggle.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
         }
 
         // Initialize all animations and interactions
@@ -2019,11 +1983,22 @@
         }
 
         // Smooth scroll for hero scroll indicator
-        const heroScroll = document.querySelector('.hero-scroll');
-        if (heroScroll) {
-            heroScroll.addEventListener('click', () => {
-                document.querySelector('#about').scrollIntoView({ behavior: 'smooth' });
-            });
+        document.querySelector('.hero-scroll').addEventListener('click', () => {
+            document.querySelector('#about').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // Add typing effect to hero title
+        function typeWriter(element, text, speed = 100) {
+            let i = 0;
+            element.innerHTML = '';
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
         }
 
         // Enhanced hover effects for project cards
@@ -2046,10 +2021,11 @@
             }
         });
 
-        // Initialize on DOM content loaded
+        // Add loading animation complete
         document.addEventListener('DOMContentLoaded', () => {
+            // Start loading animation immediately
             setTimeout(() => {
-                if (loadingScreen && loadingScreen.style.display !== 'none') {
+                if (loadingScreen.style.display !== 'none') {
                     loadingScreen.style.opacity = '0';
                     setTimeout(() => {
                         loadingScreen.style.display = 'none';
@@ -2057,7 +2033,7 @@
                         initAnimations();
                     }, 500);
                 }
-            }, 3000);
+            }, 3000); // Minimum 3 seconds loading time
         });
     </script>
 </body>
